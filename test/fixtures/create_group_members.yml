@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  notable_group: one
+  group_memberable: one
+  group_memberable_type: Group memberable
+
+two:
+  notable_group: two
+  group_memberable: two
+  group_memberable_type: Group memberable

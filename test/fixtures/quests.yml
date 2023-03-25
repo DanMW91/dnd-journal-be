@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  campaign: one
+  location: one
+  reward: MyString
+  npc: one
+  description: MyString
+
+two:
+  title: MyString
+  campaign: two
+  location: two
+  reward: MyString
+  npc: two
+  description: MyString

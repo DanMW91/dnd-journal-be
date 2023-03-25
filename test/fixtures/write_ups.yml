@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  campaign: one
+  content: MyText
+  session_number: 1
+  title: MyString
+
+two:
+  campaign: two
+  content: MyText
+  session_number: 1
+  title: MyString

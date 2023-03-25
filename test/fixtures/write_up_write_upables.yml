@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  write_up: one
+  write_upable: one
+  write_upable_type: Write upable
+
+two:
+  write_up: two
+  write_upable: two
+  write_upable_type: Write upable
