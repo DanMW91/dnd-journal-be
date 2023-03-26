@@ -10,6 +10,7 @@ module Types
       field :display_info, String, null: false
       field :display_title, String, null: false
       field :image_url, String, null: true
+      field :backstory, String, null: true
 
       def image_url
         object.image&.url
