@@ -1,5 +1,6 @@
 module Mutations
   class UpdateNotableGroup < Mutations::BaseMutation
+    argument :id, ID, required: true
     argument :name, String, required: true
     argument :description, String, required: true
     argument :characters, String, required: false
@@ -9,12 +10,12 @@ module Mutations
 
     field :notable_group, Types::Model::NotableGroupType
 
-    def resolve(name:, description:, campaign_name:, characters:, npcs:, location:)
+    def resolve(name:, description:, campaign_name:, characters:, npcs:, location:, id:)
       campaign = context[:current_resource].campaigns.find_by(
         name: campaign_name
       )
 
-      notable_group = campaign.notable_groups.find_by(name: name)
+      notable_group = NotableGroup.find(id)
 
       group_attribs = {name: name, description: description}
 
@@ -27,7 +28,6 @@ module Mutations
       end
 
       character_objs = characters_array.map do |char|
-        byebug
         campaign.characters.find_by('LOWER(first_name)= ?', char.downcase)
       end
 
