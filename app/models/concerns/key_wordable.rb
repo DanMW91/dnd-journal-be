@@ -12,7 +12,7 @@ module KeyWordable
     class_attribute :key_word_field
 
     def check_and_create_key_word
-      return if key_word.key_word == send(key_word_field)
+      return if key_word&.key_word == send(key_word_field)
 
       key_word&.destroy!
 
