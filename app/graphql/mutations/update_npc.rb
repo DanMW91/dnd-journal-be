@@ -1,5 +1,6 @@
 module Mutations
   class UpdateNpc < Mutations::BaseMutation
+    argument :id, ID, required: true
     argument :first_name, String, required: true
     argument :last_name, String, required: true
     argument :description, String, required: true
@@ -8,12 +9,12 @@ module Mutations
 
     field :npc, Types::Model::NpcType
 
-    def resolve(first_name:, last_name:, description:, campaign_name:, image_url:)
+    def resolve(first_name:, last_name:, description:, campaign_name:, image_url:, id:)
       campaign = context[:current_resource].campaigns.find_by(
         name: campaign_name
       )
 
-      npc = campaign.npcs.find_by(first_name: first_name)
+      npc = Npc.find(id)
       npc_attribs = {}
       first_name && npc_attribs[:first_name] = first_name
       last_name && npc_attribs[:last_name] = last_name

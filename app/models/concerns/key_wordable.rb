@@ -5,11 +5,19 @@ module KeyWordable
     has_one :key_word, as: :key_wordable, dependent: :destroy
     belongs_to :campaign
 
-    after_create :create_key_word
+    after_save :check_and_create_key_word
 
     private
 
     class_attribute :key_word_field
+
+    def check_and_create_key_word
+      return if key_word.key_word == send(key_word_field)
+
+      key_word&.destroy!
+
+      create_key_word
+    end
 
     def create_key_word
       KeyWord.create!(
@@ -18,6 +26,7 @@ module KeyWordable
         campaign: campaign,
         word_count: send(key_word_field).split(' ').length
       )
+
       update_write_ups
     end
 

@@ -7,7 +7,7 @@
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins Rails.env.production? ? 'https://dndfe.vercel.app' : 'http://localhost:5174'
+    origins Rails.env.production? ? 'https://dndfe.vercel.app' : '*'
 
     resource '*',
       headers: :any,
