@@ -14,7 +14,8 @@ module Mutations
       campaign = quest.campaign
       quest_attribs = {}
 
-      npc = campaign.npcs.find_by(first_name: npc)
+      npc = campaign.npcs.find_by('LOWER(first_name)= ?', npc.downcase)
+
       location = campaign.locations.find_by('LOWER(name)= ?', location)
 
       description && quest_attribs[:description] = description
