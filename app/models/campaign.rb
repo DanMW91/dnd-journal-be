@@ -1,4 +1,6 @@
 class Campaign < ApplicationRecord
+  include StringStrippable
+
   has_and_belongs_to_many :users
   has_many :key_words, dependent: :destroy
   has_many :characters, dependent: :destroy

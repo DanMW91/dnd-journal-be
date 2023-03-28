@@ -1,6 +1,7 @@
 class Character < ApplicationRecord
   include KeyWordable
   include WriteUpMentionable
+  include StringStrippable
 
   key_word_field :first_name
   belongs_to :user
