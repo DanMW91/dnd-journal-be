@@ -1,6 +1,7 @@
 class Quest < ApplicationRecord
   include KeyWordable
   include WriteUpMentionable
+  include StringStrippable
 
   key_word_field :title
 
