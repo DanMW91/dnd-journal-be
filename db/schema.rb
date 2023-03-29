@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_03_26_153347) do
+ActiveRecord::Schema.define(version: 2023_03_29_195658) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -146,6 +146,8 @@ ActiveRecord::Schema.define(version: 2023_03_26_153347) do
     t.bigint "write_up_mentionable_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "key_word_id"
+    t.index ["key_word_id"], name: "index_write_up_mentions_on_key_word_id"
     t.index ["write_up_id"], name: "index_write_up_mentions_on_write_up_id"
     t.index ["write_up_mentionable_type", "write_up_mentionable_id"], name: "idx_wrte_up_mntns_on_wrte_up_mntnble_typ_nd_wrte_up_menble_id"
   end
@@ -171,6 +173,7 @@ ActiveRecord::Schema.define(version: 2023_03_26_153347) do
   add_foreign_key "quests", "campaigns"
   add_foreign_key "quests", "locations"
   add_foreign_key "quests", "npcs"
+  add_foreign_key "write_up_mentions", "key_words"
   add_foreign_key "write_up_mentions", "write_ups"
   add_foreign_key "write_ups", "campaigns"
 end
