@@ -9,6 +9,11 @@ module Types
       field :display_info, String, null: false
       field :display_title, String, null: false
       field :image_url, String, null: true
+      field :key_words, [Types::Model::KeyWordType], null: false
+
+      def key_words
+        object.key_words.reject { |kw| kw.key_word == object.first_name }
+      end
 
       def image_url
         object.image&.url

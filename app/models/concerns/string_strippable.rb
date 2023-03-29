@@ -5,8 +5,8 @@ module StringStrippable
     before_validation :squish_fields
 
     def squish_fields
-      changed.each do |key, value|
-        self[key] = value.squish if value.respond_to?("squish")
+      changed.each do |key|
+        self[key] = self[key].squish if self[key].respond_to?('squish')
       end
     end
   end

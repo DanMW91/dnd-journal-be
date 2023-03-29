@@ -2,17 +2,31 @@ module KeyWordable
   extend ActiveSupport::Concern
 
   included do
-    has_one :key_word, as: :key_wordable, dependent: :destroy
+    has_many :key_words, as: :key_wordable, dependent: :destroy
     belongs_to :campaign
 
-    after_save :check_and_create_key_word
+    def create_key_words(key_word_array:)
+      key_word_array << send(key_word_field)
+
+      key_words.where.not(key_word: key_word_array).destroy_all
+
+      key_word_array.each do |key_word|
+        key_words.find_or_create_by!(
+          key_word: key_word,
+          campaign: campaign,
+          word_count: key_word.split(' ').length
+        )
+      end
+
+      WriteUp.where(campaign: campaign).each(&:scan_write_up_for_key_words)
+    end
 
     private
 
     class_attribute :key_word_field
 
     def check_and_create_key_word
-      return if key_word&.key_word == send(key_word_field)
+      return if key_words&.key_word == send(key_word_field)
 
       key_word&.destroy!
 

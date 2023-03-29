@@ -21,7 +21,7 @@ class WriteUp < ApplicationRecord
   end
 
   def existing_key_words
-    write_up_mentions.map(&:write_up_mentionable).map { |resource| resource&.key_word&.key_word&.downcase }
+    write_up_mentions.map(&:write_up_mentionable).flat_map { |resource| resource&.key_words&.map{ |kw| kw.key_word.downcase }}.reject { |word| word.blank? }
   end
 
   def compare_key_words
@@ -30,9 +30,10 @@ class WriteUp < ApplicationRecord
 
       next unless match
 
-      WriteUpMention.create!(
+      WriteUpMention.find_or_create_by!(
         write_up_mentionable: key_word.key_wordable,
-        write_up: self
+        write_up: self,
+        key_word: KeyWord.find_by(key_word: key_word.key_word)
       )
     end
   end
