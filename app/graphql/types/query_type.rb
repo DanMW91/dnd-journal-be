@@ -103,7 +103,7 @@ module Types
       WriteUpMention.where(
         write_up_mentionable_type: resource_type,
         write_up_mentionable_id: resource_id
-      ).map(&:write_up)
+      ).map(&:write_up).uniq
     end
 
     field :quest, Types::Model::QuestType, null: false do
