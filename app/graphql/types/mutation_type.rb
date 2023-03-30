@@ -4,6 +4,7 @@ module Types
 
     field :create_campaign, mutation: Mutations::CreateCampaign
     field :create_character, mutation: Mutations::CreateCharacter
+    field :update_character, mutation: Mutations::UpdateCharacter
     field :create_write_up, mutation: Mutations::CreateWriteUp
     field :create_npc, mutation: Mutations::CreateNpc
     field :update_npc, mutation: Mutations::UpdateNpc
