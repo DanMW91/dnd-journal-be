@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_03_29_195658) do
+ActiveRecord::Schema.define(version: 2023_03_31_123352) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -77,6 +77,23 @@ ActiveRecord::Schema.define(version: 2023_03_29_195658) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["campaign_id"], name: "index_locations_on_campaign_id"
+  end
+
+  create_table "maps", force: :cascade do |t|
+    t.bigint "location_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["location_id"], name: "index_maps_on_location_id"
+  end
+
+  create_table "markers", force: :cascade do |t|
+    t.bigint "map_id", null: false
+    t.string "markerable_type", null: false
+    t.bigint "markerable_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["map_id"], name: "index_markers_on_map_id"
+    t.index ["markerable_type", "markerable_id"], name: "index_markers_on_markerable_type_and_markerable_id"
   end
 
   create_table "notable_groups", force: :cascade do |t|
@@ -167,6 +184,8 @@ ActiveRecord::Schema.define(version: 2023_03_29_195658) do
   add_foreign_key "group_members", "notable_groups"
   add_foreign_key "key_words", "campaigns"
   add_foreign_key "locations", "campaigns"
+  add_foreign_key "maps", "locations"
+  add_foreign_key "markers", "maps"
   add_foreign_key "notable_groups", "campaigns"
   add_foreign_key "notable_groups", "locations"
   add_foreign_key "npcs", "campaigns"
