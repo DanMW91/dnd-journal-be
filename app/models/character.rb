@@ -4,6 +4,7 @@ class Character < ApplicationRecord
   include StringStrippable
 
   key_word_field :first_name
+
   belongs_to :user
   belongs_to :campaign
   has_one :image, as: :imageable, dependent: :destroy

@@ -14,5 +14,7 @@ module Types
     field :create_notable_group, mutation: Mutations::CreateNotableGroup
     field :update_notable_group, mutation: Mutations::UpdateNotableGroup
     field :create_s3_urls, mutation: Mutations::CreateS3Urls
+    field :create_map, mutation: Mutations::CreateMap
+    field :create_marker, mutation: Mutations::CreateMarker
   end
 end

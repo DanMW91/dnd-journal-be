@@ -7,6 +7,7 @@ module Types
       field :campaign, Types::Model::CampaignType, null: false
       field :display_info, String, null: false
       field :display_title, String, null: false
+      field :location_map, Types::Model::LocationMapType, null: true
 
       def display_info
         object.description

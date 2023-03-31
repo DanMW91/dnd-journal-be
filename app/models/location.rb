@@ -7,5 +7,6 @@ class Location < ApplicationRecord
 
   belongs_to :campaign
 
+  has_one :location_map
   validates :name, uniqueness: true
 end

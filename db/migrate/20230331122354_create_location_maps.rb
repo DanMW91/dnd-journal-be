@@ -1,6 +1,6 @@
-class CreateMaps < ActiveRecord::Migration[6.0]
+class CreateLocationMaps < ActiveRecord::Migration[6.0]
   def change
-    create_table :maps do |t|
+    create_table :location_maps do |t|
       t.references :location, null: false, foreign_key: true
 
       t.timestamps

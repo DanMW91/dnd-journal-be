@@ -174,5 +174,13 @@ module Types
         name: campaign_name
       ).locations.sort_by { |location| location.name.downcase }
     end
+
+    field :location_map, Types::Model::LocationMapType, null: false do
+      argument :map_id, ID, required: true
+    end
+
+    def location_map(map_id:)
+      LocationMap.find(map_id)
+    end
   end
 end
