@@ -27,6 +27,7 @@ module Mutations
       )
 
       if new_quest.save
+        new_quest.create_key_words(key_word_array: [title])
         # Successful creation, return the created object with no errors
         {quest: new_quest}
       else
