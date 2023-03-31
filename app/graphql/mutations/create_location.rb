@@ -19,6 +19,7 @@ module Mutations
 
 
       if new_location.save
+        new_location.create_key_words(key_word_array: [name])
         # Successful creation, return the created object with no errors
         {location: new_location}
       else

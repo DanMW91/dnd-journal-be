@@ -44,6 +44,7 @@ module Mutations
       )
 
       if new_group.save
+        new_group.create_key_words(key_word_array: [name])
         # Successful creation, return the created object with no errors
         { notable_group: new_group }
       else
