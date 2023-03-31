@@ -19,7 +19,7 @@ module Types
     end
 
     def characters(campaign_name:)
-      context[:current_resource].campaigns.find_by(name: campaign_name).characters
+      context[:current_resource].campaigns.find_by(name: campaign_name).characters.sort_by { |char| char.first_name.downcase }
     end
 
     field :character, Types::Model::CharacterType, null: true do
@@ -40,7 +40,7 @@ module Types
     end
 
     def npcs(campaign_name:)
-      context[:current_resource].campaigns.find_by(name: campaign_name).npcs
+      context[:current_resource].campaigns.find_by(name: campaign_name).npcs.sort_by { |npc| npc.first_name.downcase }
     end
 
     field :npc, Types::Model::NpcType, null: true do
@@ -78,7 +78,7 @@ module Types
     def write_ups(campaign_name:)
       context[:current_resource].campaigns.find_by(
         name: campaign_name
-      ).write_ups
+      ).write_ups.sort_by(&:session_number)
     end
 
     field :write_up, Types::Model::WriteUpType, null: true do
@@ -126,7 +126,7 @@ module Types
     def quests(campaign_name:)
       context[:current_resource].campaigns.find_by(
         name: campaign_name
-      ).quests
+      ).quests.sort_by { |location| location.title.downcase }
     end
 
     field :notable_groups, [Types::Model::NotableGroupType], null: true do
@@ -136,7 +136,7 @@ module Types
     def notable_groups(campaign_name:)
       context[:current_resource].campaigns.find_by(
         name: campaign_name
-      ).notable_groups
+      ).notable_groups.sort_by { |notable_group| notable_group.name.downcase }
     end
 
     field :notable_group, Types::Model::NotableGroupType, null: false do
@@ -172,7 +172,7 @@ module Types
     def locations(campaign_name:)
       context[:current_resource].campaigns.find_by(
         name: campaign_name
-      ).locations
+      ).locations.sort_by { |location| location.name.downcase }
     end
   end
 end
