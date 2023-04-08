@@ -18,8 +18,7 @@ module Mutations
       offset_y:
     )
       campaign = context[:current_resource].campaigns.find_by(name: campaign_name)
-      resource = find_resource(
-        campaign: campaign,
+      resource = campaign.find_resource(
         resource_name: resource_name,
         resource_type: resource_type
       )
@@ -44,21 +43,6 @@ module Mutations
         {
           map_id: nil
         }
-      end
-    end
-
-    def find_resource(resource_type:, resource_name:, campaign:)
-      lower_name = resource_name.downcase
-
-      case resource_type
-      when 'Character'
-        campaign.characters.find_by('LOWER(first_name)= ?', lower_name)
-      when 'Quest'
-        campaign.quests.find_by('LOWER(title)= ?', lower_name)
-      when 'Location'
-        campaign.locations.find_by('LOWER(name)= ?', lower_name)
-      when 'Npc'
-        campaign.npcs.find_by('LOWER(first_name)= ?', lower_name)
       end
     end
   end

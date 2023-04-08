@@ -2,6 +2,7 @@ class WriteUp < ApplicationRecord
   belongs_to :campaign
 
   has_many :write_up_mentions
+  has_many :timeline_events, dependent: :destroy
   has_many :characters, through: :write_up_mentions, source: :write_up_mentionable, source_type: 'Character'
 
   validates :session_number, presence: true, uniqueness: { scope: :campaign }

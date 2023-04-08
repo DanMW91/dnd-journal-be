@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  event_type: 1
+  time_lineable: one
+  time_lineable_type: Time lineable
+  description: MyString
+  content: MyString
+
+two:
+  event_type: 1
+  time_lineable: two
+  time_lineable_type: Time lineable
+  description: MyString
+  content: MyString

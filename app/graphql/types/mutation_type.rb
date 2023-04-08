@@ -16,5 +16,6 @@ module Types
     field :create_s3_urls, mutation: Mutations::CreateS3Urls
     field :create_map, mutation: Mutations::CreateMap
     field :create_marker, mutation: Mutations::CreateMarker
+    field :create_timeline_event, mutation: Mutations::CreateTimelineEvent
   end
 end

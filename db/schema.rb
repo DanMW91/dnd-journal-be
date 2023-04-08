@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_03_31_182718) do
+ActiveRecord::Schema.define(version: 2023_04_03_125117) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -132,6 +132,20 @@ ActiveRecord::Schema.define(version: 2023_03_31_182718) do
     t.index ["campaign_id"], name: "index_quests_on_campaign_id"
     t.index ["location_id"], name: "index_quests_on_location_id"
     t.index ["npc_id"], name: "index_quests_on_npc_id"
+  end
+
+  create_table "timeline_events", force: :cascade do |t|
+    t.integer "event_type", null: false
+    t.bigint "write_up_id", null: false
+    t.string "time_lineable_type"
+    t.bigint "time_lineable_id"
+    t.boolean "death", null: false
+    t.string "description", null: false
+    t.string "content", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["time_lineable_type", "time_lineable_id"], name: "idx_time_lne_evnts_on_time_linable_typ_and_time_lnable_id"
+    t.index ["write_up_id"], name: "index_timeline_events_on_write_up_id"
   end
 
   create_table "users", force: :cascade do |t|
