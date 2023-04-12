@@ -7,6 +7,11 @@ module Types
       field :title, String, null: false
       field :campaign, Types::Model::CampaignType, null: false
       field :timeline_events, [Types::Model::TimelineEventType], null: true
+      field :write_up_total, Integer, null: false
+
+      def write_up_total
+        object.campaign.write_ups.maximum(:session_number)
+      end
     end
   end
 end

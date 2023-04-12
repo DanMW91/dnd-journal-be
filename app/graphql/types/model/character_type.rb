@@ -9,6 +9,7 @@ module Types
       field :user, Types::Model::UserType, null: false
       field :display_info, String, null: false
       field :display_title, String, null: false
+      field :notable_groups, [Types::Model::NotableGroupType], null: true
       field :image_url, String, null: true
       field :backstory, String, null: true
       field :key_words, [Types::Model::KeyWordType], null: false
@@ -18,7 +19,7 @@ module Types
       end
 
       def image_url
-        object.image&.url
+        object.image&.url || 'https://i.pinimg.com/736x/83/bc/8b/83bc8b88cf6bc4b4e04d153a418cde62.jpg'
       end
 
       def display_info
